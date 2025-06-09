@@ -9,7 +9,6 @@ from routes.food_predict import food_predict_bp
 from routes.nutrient_tracker import nutrient_tracker_bp
 from routes.reminder import reminder_bp
 from routes.recipes import recipes_bp
-from routes.diet_plan import diet_planner_bp  # Keep this if you're using diet planner
 
 def create_app():
     app = Flask(__name__)
@@ -20,7 +19,6 @@ def create_app():
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(bmi_bp, url_prefix='/bmi')
     app.register_blueprint(diet_plan_bp, url_prefix='/diet')
-    app.register_blueprint(diet_planner_bp, url_prefix='/dietplanner')  # keep if needed
     app.register_blueprint(feedback_bp, url_prefix='/feedback')
     app.register_blueprint(food_predict_bp, url_prefix='/food')
     app.register_blueprint(nutrient_tracker_bp, url_prefix='/tracker')
@@ -31,4 +29,4 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=False, host='0.0.0.0')
