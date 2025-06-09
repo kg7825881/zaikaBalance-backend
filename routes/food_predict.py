@@ -2,6 +2,15 @@ from flask import Blueprint, request, jsonify
 import numpy as np
 import joblib
 import os
+import zipfile
+
+models_zip_path = 'models/zipformodels.zip'  # your zip filename here
+extract_folder = 'models/'
+
+if os.path.exists(models_zip_path):
+    with zipfile.ZipFile(models_zip_path, 'r') as zip_ref:
+        zip_ref.extractall(extract_folder)
+
 
 food_predict_bp = Blueprint('food_predict', __name__)
 
