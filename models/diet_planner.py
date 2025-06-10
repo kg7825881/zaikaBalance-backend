@@ -31,7 +31,7 @@ nn_model = NearestNeighbors(n_neighbors=5, algorithm='auto')
 nn_model.fit(X)
 
 # Save model and label encoder
-joblib.dump(nn_model, 'models/diet_planner_nn_model.pkl')
+joblib.dump(nn_model, 'models/diet_planner_model.pkl')
 joblib.dump(le, 'models/diet_planner_label_encoder.pkl')
 
 print("✅ Diet Planner model trained and saved!")
