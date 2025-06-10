@@ -8,7 +8,7 @@ from routes.food_predict import food_predict_bp
 from routes.nutrient_tracker import nutrient_tracker_bp
 from routes.reminder import reminder_bp
 from routes.recipes import recipes_bp
-from routes.diet_plan import diet_plan_bp  # ✅ Added import
+from routes.diet_plan import diet_planner_bp  # ✅ Added import
 
 def create_app():
     app = Flask(__name__)
