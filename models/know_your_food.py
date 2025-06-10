@@ -17,8 +17,6 @@ print(f"📄 Loading dataset from {data_path}")
 # Load the dataset
 df = pd.read_csv(data_path, encoding='ISO-8859-1')  # or encoding='latin1'
 
-
-
 # Drop rows with missing values in essential columns
 df.dropna(subset=['food_name', 'energy_kj', 'energy_kcal', 'carb_g', 'protein_g', 'fat_g', 'freesugar_g'], inplace=True)
 
@@ -47,13 +45,13 @@ y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print(f"🎯 Test Accuracy: {accuracy:.2f}")
 
-# Save model and encoder
-model_path = os.path.join("models", "know_your_food_model.pkl")
-encoder_path = os.path.join("models", "label_encoder.pkl")
+# Save model and encoder with compression
+model_path = os.path.join("models", "know_your_food_model.pkl.gz")
+encoder_path = os.path.join("models", "label_encoder.pkl.gz")
 
-joblib.dump(model, model_path)
-joblib.dump(encoder, encoder_path)
+joblib.dump(model, model_path, compress=3)
+joblib.dump(encoder, encoder_path, compress=3)
 
-print(f"💾 Model saved to: {model_path}")
-print(f"💾 Encoder saved to: {encoder_path}")
+print(f"💾 Compressed model saved to: {model_path}")
+print(f"💾 Compressed encoder saved to: {encoder_path}")
 print("✅ All done!")
