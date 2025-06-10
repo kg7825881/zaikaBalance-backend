@@ -8,7 +8,7 @@ from routes.food_predict import food_predict_bp
 from routes.nutrient_tracker import nutrient_tracker_bp
 from routes.reminder import reminder_bp
 from routes.recipes import recipes_bp
-from routes.diet_plan import diet_planner_bp  # ✅ Added import
+from routes.diet_plan import diet_planner_bp  # ✅ Correctly imported
 
 def create_app():
     app = Flask(__name__)
@@ -23,10 +23,13 @@ def create_app():
     app.register_blueprint(nutrient_tracker_bp, url_prefix='/tracker')
     app.register_blueprint(reminder_bp, url_prefix='/reminder')
     app.register_blueprint(recipes_bp, url_prefix='/recipes')
-    app.register_blueprint(diet_plan_bp, url_prefix='/diet')  # ✅ Registered diet_plan
+    app.register_blueprint(diet_planner_bp, url_prefix='/diet')  # ✅ Corrected name
 
     return app
 
+# ✅ Needed for Gunicorn
+app = create_app()
+
 if __name__ == "__main__":
-    app = create_app()
     app.run(debug=False, host='0.0.0.0')
+
