@@ -1,6 +1,3 @@
 .venv/
-*.pkl
-*.h5
-*.pt
-models/*.pkl
+
 
