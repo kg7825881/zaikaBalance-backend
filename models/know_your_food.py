@@ -42,8 +42,8 @@ model.fit(X_train, y_train)
 
 # Evaluate model
 y_pred = model.predict(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-print(f"🎯 Test Accuracy: {accuracy:.2f}")
+test_accuracy = accuracy_score(y_test, y_pred)
+print(f"🎯 Test Accuracy: {test_accuracy:.2f}")
 
 # Save model and encoder with compression
 model_path = os.path.join("models", "know_your_food_model.pkl.gz")
@@ -55,3 +55,8 @@ joblib.dump(encoder, encoder_path, compress=3)
 print(f"💾 Compressed model saved to: {model_path}")
 print(f"💾 Compressed encoder saved to: {encoder_path}")
 print("✅ All done!")
+
+
+
+
+
