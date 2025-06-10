@@ -5,7 +5,7 @@ import joblib
 diet_planner_bp = Blueprint('diet_planner', __name__)
 
 # Load model and encoder once
-nn_model = joblib.load('models/diet_planner_nn_model.pkl')
+nn_model = joblib.load('models/diet_planner_model.pkl')
 label_encoder = joblib.load('models/diet_planner_label_encoder.pkl')
 
 @diet_planner_bp.route('/recommend', methods=['POST'])
