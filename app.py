@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_cors import CORS
-
 from routes.auth import auth_bp
 from routes.bmi import bmi_bp
 from routes.feedback import feedback_bp
@@ -10,10 +9,17 @@ from routes.reminder import reminder_bp
 from routes.recipes import recipes_bp
 from routes.diet_plan import diet_planner_bp  # ✅ Correctly imported
 
+import os  # Needed for dynamic port binding on Render
+
 def create_app():
     app = Flask(__name__)
     CORS(app)
     app.config.from_object('config.Config')
+
+    # Root route for sanity check
+    @app.route('/')
+    def home():
+        return "Zaika Balance Backend is live!"
 
     # Register blueprints
     app.register_blueprint(auth_bp, url_prefix='/auth')
@@ -23,7 +29,7 @@ def create_app():
     app.register_blueprint(nutrient_tracker_bp, url_prefix='/tracker')
     app.register_blueprint(reminder_bp, url_prefix='/reminder')
     app.register_blueprint(recipes_bp, url_prefix='/recipes')
-    app.register_blueprint(diet_planner_bp, url_prefix='/diet')  # ✅ Corrected name
+    app.register_blueprint(diet_planner_bp, url_prefix='/diet')
 
     return app
 
@@ -31,5 +37,5 @@ def create_app():
 app = create_app()
 
 if __name__ == "__main__":
-    app.run(debug=False, host='0.0.0.0')
-
+    port = int(os.environ.get('PORT', 5000))  # Use Render's dynamic port
+    app.run(debug=False, host='0.0.0.0', port=port)
